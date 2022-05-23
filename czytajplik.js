@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-function saveData(nazwa, nadpisac) {
+function saveData(nazwa) {
 
     fs.readdir(path.join(__dirname, 'dane'), function (err, files) {
         if (err) {
@@ -30,18 +30,14 @@ function saveData(nazwa, nadpisac) {
 
                         while (dlugosc--) {
 
-                            // console.log(object[dlugosc]);
-
-
                             var id = obiekt[dlugosc].id;
 
                             var name = obiekt[dlugosc].name;
-                            let fileData = "name: " + obiekt[dlugosc].name + "\n street: " + obiekt[dlugosc].address.street;
-                            console.log(name);
-
+                            let fileData = "name: " + obiekt[dlugosc].name + "\n street: " + obiekt[dlugosc].address.street + "\n Zip Code: " + obiekt[dlugosc].address.zipcode + "\n City: " + obiekt[dlugosc].address.city + "\n Phone: ";
+                            
                             fs.writeFile(path.join(__dirname, nazwa, 'id-' + id + ' -' + name + '.txt'), fileData, function (err) {
 
-                                if (err.code === 'EEXIST' || !nadpisac) {
+                                if (err.code === 'EEXIST') {
                                     console.log('Plik już istnieje');
                                     return;
                                 }
@@ -51,10 +47,11 @@ function saveData(nazwa, nadpisac) {
                     }
                 })
             }
-            )
+        })
         }
-    })
+    )}
+})
 }
 
-console.log(saveData('Folder', false));
+console.log(saveData('Folder'));
 console.log('2-read-write-users.json');
