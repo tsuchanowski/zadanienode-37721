@@ -1,5 +1,3 @@
-const {losuj,losujAlfa,losujMinMax} = require(`./math`);
+const {saveData} = require(`./czytajplik`);
 
-console.log(losujMinMax(2,75,10));
-console.log(losujAlfa(8));
-console.log(losuj(1,99));
+console.log(saveData("sciezka", "Folderek", "false"));
